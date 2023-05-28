@@ -42,7 +42,7 @@ form button {
   grid-auto-rows: 350px;
   grid-gap: 15px;
   justify-content: center;
-  margin: 0 auto auto 20px;
+  margin: 0 auto;
   padding: 15px;
   list-style: none;
 }
@@ -89,8 +89,7 @@ form button {
 }
 
 .load-more {
-  display: flex;
-  justify-content: center;
+  display: none;
   margin: 0 auto;
   width: 180px;
   height: 40px;

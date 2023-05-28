@@ -21,7 +21,7 @@ loadMoreBtnEl.addEventListener('click', onLoadMoreClick);
 
 async function onFormSubmit(event) {
   event.preventDefault();
-  loadMoreBtnEl.style.display = 'block';
+
   let q = inputEl.value;
   page = 1;
   try {
@@ -29,14 +29,17 @@ async function onFormSubmit(event) {
       `${BASE_URL}?key=${key}&q=${q}&imageType=${imageType}&orientation=${orientation}&safesearch=${safesearch}&page=1&per_page=40`
     );
 
-    // if (!response.ok) {
-    //   throw new Error(response.statusText);
-    // }
-
     galleryContainerEl.innerHTML = '';
 
     const result = await response.data;
+    console.log(result);
     renderImages(result);
+
+    Notiflix.Notify.success(`Hooray! We found ${result.totalHits} images.`);
+
+    if (result.totalHits > 40) {
+      loadMoreBtnEl.style.display = 'block';
+    }
   } catch (error) {
     console.log(error);
   }
@@ -44,10 +47,12 @@ async function onFormSubmit(event) {
 
 function renderImages(array) {
   if (array.hits.length === 0) {
+    loadMoreBtnEl.style.display = 'none';
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
   }
+
   array.hits.forEach(img => {
     galleryContainerEl.innerHTML += `<div class="photo-card">
   <a class="gallery__link" href= "${img.largeImageURL}"><img class="gallery__image" src="${img.largeImageURL}" alt="${img.tags}" loading="lazy" />
@@ -73,18 +78,13 @@ function renderImages(array) {
 </div>`;
   });
 
-  let newModal = new SimpleLightbox('.gallery a', {
-    captions: true,
-    captionsData: 'alt',
-    captionPosition: 'bottom',
-    captionDelay: 250,
-  });
+  let newModal = new SimpleLightbox('.gallery a');
 }
 
 async function onLoadMoreClick(event) {
   page++;
   loadMoreBtnEl.style.display = 'none';
-  loadMoreBtnEl.style.display = 'block';
+
   let q = inputEl.value;
   try {
     const response = await axios.get(
@@ -93,7 +93,14 @@ async function onLoadMoreClick(event) {
 
     const result = await response.data;
     renderImages(result);
+    if (per_page < 40) {
+      Notiflix.Notify.failure(
+        'We are sorry, but you have reached the end of search results.'
+      );
+    }
   } catch (error) {
-    console.log(error);
+    Notiflix.Notify.failure(
+      'We are sorry, but you have reached the end of search results.'
+    );
   }
 }
