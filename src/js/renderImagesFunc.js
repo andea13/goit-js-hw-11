@@ -1,4 +1,5 @@
 import refs from './refs';
+import onFormSubmit from './index';
 
 export default function renderImages(array) {
   if (array.hits.length === 0) {

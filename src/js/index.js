@@ -9,7 +9,7 @@ import renderImages from './renderImagesFunc';
 refs.formEl.addEventListener('submit', onFormSubmit);
 refs.loadMoreBtnEl.addEventListener('click', onLoadMoreClick);
 
-async function onFormSubmit(event) {
+export default async function onFormSubmit(event) {
   event.preventDefault();
 
   let q = refs.inputEl.value;
