@@ -36,5 +36,5 @@ async function onFormSubmit(event) {
   }
 }
 
-renderImages(array);
+renderImages();
 onLoadMoreClick();
