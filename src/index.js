@@ -93,14 +93,15 @@ async function onLoadMoreClick(event) {
 
     const result = await response.data;
     renderImages(result);
-    if (per_page < 40) {
+    console.log(result);
+    loadMoreBtnEl.style.display = 'block';
+    if (result.hits.length < 40) {
+      loadMoreBtnEl.style.display = 'none';
       Notiflix.Notify.failure(
         'We are sorry, but you have reached the end of search results.'
       );
     }
   } catch (error) {
-    Notiflix.Notify.failure(
-      'We are sorry, but you have reached the end of search results.'
-    );
+    console.log(error.message);
   }
 }
