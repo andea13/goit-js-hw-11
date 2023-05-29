@@ -1,5 +1,0 @@
-import axios from 'axios';
-
-const BASE_URL = 'https://pixabay.com/api';
-
-axios.get(`${BASE_URL}`);
