@@ -19,5 +19,5 @@ function t(t){return t&&t.__esModule?t.default:t}"use strict";var e,o,i,n,a,r="u
     </p>
   </div>
   </a>
-</div>`}),new(t(eP))(".gallery a")}async function e6(e){eZ++,e0.style.display="none";let o=eG.value;try{let e=await ew.get(`${e_}?key=${eq}&q=${o}&imageType=${e$}&orientation=${eV}&safesearch=${eJ}&page=${eZ}&per_page=40`),i=await e.data;e2(i),per_page<40&&t(eM).Notify.failure("We are sorry, but you have reached the end of search results.")}catch(e){t(eM).Notify.failure("We are sorry, but you have reached the end of search results.")}}eK.addEventListener("submit",e1),e0.addEventListener("click",e6);
-//# sourceMappingURL=index.0a8ba2af.js.map
+</div>`}),new(t(eP))(".gallery a")}async function e6(e){eZ++,e0.style.display="none";let o=eG.value;try{let e=await ew.get(`${e_}?key=${eq}&q=${o}&imageType=${e$}&orientation=${eV}&safesearch=${eJ}&page=${eZ}&per_page=40`),i=await e.data;e2(i),console.log(i),e0.style.display="block",i.hits.length<40&&(e0.style.display="none",t(eM).Notify.failure("We are sorry, but you have reached the end of search results."))}catch(t){console.log(t.message)}}eK.addEventListener("submit",e1),e0.addEventListener("click",e6);
+//# sourceMappingURL=index.8988a29b.js.map

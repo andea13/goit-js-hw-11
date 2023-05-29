@@ -19,5 +19,5 @@
     </p>
   </div>
   </a>
-</div>`}),new(e(eF))(".gallery a")}async function e4(t){eQ++,e6.style.display="none";let o=e1.value;try{let t=await eC.get(`${eV}?key=${eJ}&q=${o}&imageType=${eZ}&orientation=${eK}&safesearch=${eG}&page=${eQ}&per_page=40`),i=await t.data;e3(i),per_page<40&&e(eX).Notify.failure("We are sorry, but you have reached the end of search results.")}catch(t){e(eX).Notify.failure("We are sorry, but you have reached the end of search results.")}}e0.addEventListener("submit",e5),e6.addEventListener("click",e4)}();
-//# sourceMappingURL=index.cdcb781e.js.map
+</div>`}),new(e(eF))(".gallery a")}async function e4(t){eQ++,e6.style.display="none";let o=e1.value;try{let t=await eC.get(`${eV}?key=${eJ}&q=${o}&imageType=${eZ}&orientation=${eK}&safesearch=${eG}&page=${eQ}&per_page=40`),i=await t.data;e3(i),console.log(i),e6.style.display="block",i.hits.length<40&&(e6.style.display="none",e(eX).Notify.failure("We are sorry, but you have reached the end of search results."))}catch(t){console.log(t.message)}}e0.addEventListener("submit",e5),e6.addEventListener("click",e4)}();
+//# sourceMappingURL=index.8eea493a.js.map
