@@ -1,7 +1,8 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
-import SimpleLightbox from 'simplelightbox';
+
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from 'simplelightbox';
 import refs from './refs';
 import onLoadMoreClick from './loadMoreBtn';
 import renderImages from './renderImagesFunc';
@@ -11,6 +12,7 @@ refs.loadMoreBtnEl.addEventListener('click', onLoadMoreClick);
 
 export default async function onFormSubmit(event) {
   event.preventDefault();
+  refs.galleryContainerEl.style.visibility = 'visible';
 
   let q = refs.inputEl.value;
   refs.page = 1;
@@ -40,7 +42,5 @@ export default async function onFormSubmit(event) {
     console.log(error);
   }
 }
-
-renderImages();
 
 onLoadMoreClick();

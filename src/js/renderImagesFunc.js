@@ -3,7 +3,6 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import refs from './refs';
-// import onFormSubmit from './index';
 
 export default function renderImages(array) {
   console.log(array);
