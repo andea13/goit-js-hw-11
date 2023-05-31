@@ -3,9 +3,10 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import refs from './refs';
-import onFormSubmit from './index';
+// import onFormSubmit from './index';
 
 export default function renderImages(array) {
+  console.log(array);
   if (array.hits.length === 0) {
     refs.loadMoreBtnEl.style.display = 'none';
     Notiflix.Notify.failure(

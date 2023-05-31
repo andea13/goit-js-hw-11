@@ -26,6 +26,8 @@ export default async function onLoadMoreClick(event) {
         'We are sorry, but you have reached the end of search results.'
       );
     }
+
+    console.log(result);
   } catch (error) {
     console.log(error.message);
   }

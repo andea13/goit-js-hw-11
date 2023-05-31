@@ -28,6 +28,11 @@ export default async function onFormSubmit(event) {
     if (result.totalHits >= 1) {
       Notiflix.Notify.success(`Hooray! We found ${result.totalHits} images.`);
     }
+
+    if (result.totalHits < 40) {
+      refs.loadMoreBtnEl.style.display = 'none';
+    }
+
     if (result.totalHits >= 40) {
       refs.loadMoreBtnEl.style.display = 'block';
     }
@@ -37,4 +42,5 @@ export default async function onFormSubmit(event) {
 }
 
 renderImages();
+
 onLoadMoreClick();
