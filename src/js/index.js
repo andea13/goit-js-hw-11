@@ -1,8 +1,6 @@
-import axios from 'axios';
 import Notiflix from 'notiflix';
-
+import { getFirstPage } from './fetchImages';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import SimpleLightbox from 'simplelightbox';
 import refs from './refs';
 import onLoadMoreClick from './loadMoreBtn';
 import renderImages from './renderImagesFunc';
@@ -10,16 +8,13 @@ import renderImages from './renderImagesFunc';
 refs.formEl.addEventListener('submit', onFormSubmit);
 refs.loadMoreBtnEl.addEventListener('click', onLoadMoreClick);
 
-export default async function onFormSubmit(event) {
+async function onFormSubmit(event) {
   event.preventDefault();
   refs.galleryContainerEl.style.visibility = 'visible';
 
-  let q = refs.inputEl.value;
-  refs.page = 1;
   try {
-    const response = await axios.get(
-      `${refs.BASE_URL}?key=${refs.key}&q=${q}&imageType=${refs.imageType}&orientation=${refs.orientation}&safesearch=${refs.safesearch}&page=1&per_page=40`
-    );
+    const response = await getFirstPage();
+    console.log(response);
 
     refs.galleryContainerEl.innerHTML = '';
 
@@ -42,5 +37,3 @@ export default async function onFormSubmit(event) {
     console.log(error);
   }
 }
-
-onLoadMoreClick();
