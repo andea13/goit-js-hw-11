@@ -12,7 +12,7 @@ export default async function onLoadMoreClick(event) {
 
     const result = await response.data;
     renderImages(result);
-    console.log(result);
+
     refs.loadMoreBtnEl.style.display = 'block';
 
     if (result.hits.length < 40) {

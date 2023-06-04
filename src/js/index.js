@@ -14,12 +14,11 @@ async function onFormSubmit(event) {
 
   try {
     const response = await getFirstPage();
-    console.log(response);
 
     refs.galleryContainerEl.innerHTML = '';
 
     const result = await response.data;
-    console.log(result);
+
     renderImages(result);
 
     if (result.totalHits >= 1) {
