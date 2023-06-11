@@ -2,15 +2,14 @@ import Notiflix from 'notiflix';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import refs from './refs';
 import renderImages from './renderImagesFunc';
-import { getNextPage } from './fetchImages';
+import { fetchImages } from './fetchImages';
 
 export default async function onLoadMoreClick(event) {
   refs.loadMoreBtnEl.style.display = 'none';
 
   try {
-    const response = await getNextPage();
+    const result = await fetchImages({}, true);
 
-    const result = await response.data;
     renderImages(result);
 
     refs.loadMoreBtnEl.style.display = 'block';

@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import { getFirstPage } from './fetchImages';
+import { fetchImages } from './fetchImages';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import refs from './refs';
 import onLoadMoreClick from './loadMoreBtn';
@@ -13,11 +13,13 @@ async function onFormSubmit(event) {
   refs.galleryContainerEl.style.visibility = 'visible';
 
   try {
-    const response = await getFirstPage();
+    let q = refs.inputEl.value;
+    if (q.trim() === '') {
+      return;
+    }
+    const result = await fetchImages({ page: 1, q }, false);
 
     refs.galleryContainerEl.innerHTML = '';
-
-    const result = await response.data;
 
     renderImages(result);
 

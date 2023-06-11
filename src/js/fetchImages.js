@@ -1,36 +1,24 @@
 import axios from 'axios';
-import refs from './refs';
 
-export const BASE_URL = 'https://pixabay.com/api';
+export const BASE_URL = 'https://pixabay.com/api/';
 
 export const searchParams = new URLSearchParams({
   key: '36804541-6df310b69146ced50149f1ae2',
-  imageType: 'photo',
+  image_type: 'photo',
   orientation: 'horizontal',
   safesearch: 'true',
   page: 1,
   per_page: 40,
 });
 
-export async function getFirstPage() {
-  let q = refs.inputEl.value;
-  if (q.trim() === '') {
-    return;
+export async function fetchImages(payload, next) {
+  for (let key in payload) {
+    searchParams.set(key, payload[key]);
   }
-  searchParams.set('q', q);
-  searchParams.set('page', 1);
+  if (next) {
+    searchParams.set('page', +searchParams.get('page') + 1);
+  }
+  let response = await axios.get(`${BASE_URL}?${searchParams.toString()}`);
 
-  let firstPageResponse = await axios.get(
-    `${BASE_URL}?${searchParams.toString()}`
-  );
-  console.log(firstPageResponse);
-  return firstPageResponse;
-}
-
-export async function getNextPage() {
-  searchParams.set('page', +searchParams.get('page') + 1);
-  let nextPageResponse = await axios.get(
-    `${BASE_URL}?${searchParams.toString()}`
-  );
-  return nextPageResponse;
+  return response.data;
 }
